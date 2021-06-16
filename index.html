@@ -24,6 +24,7 @@
     <script>
         // Use this area for high-level configuration;
         const components = [
+			"board",
 			"answer",
             "airtable"
         ],
@@ -35,8 +36,8 @@
 
 <body>
     <div id="viewport">
-        <div id="board" class="board">
-            
+        <div id="board" data-component="board" class="board">
+
         </div>
     </div>
     <script src="js/vendor/airtable.js"></script>

@@ -1,0 +1,3 @@
+m.board.acts({
+
+});
