@@ -48,11 +48,13 @@ m.airtable.act({
 
     priv: {
         table(_$, args) {
-            if (m.airtable.base) return m.airtable.base;
+            if (m.airtable.base[args.name]) return m.airtable.base[args.name];
             const Airtable = require('airtable');
             const base = new Airtable({ apiKey: airtable_api_key }).base(airtable_base_id);
-            m.airtable.base = base;
+            m.airtable.base[args.name] = base;
             return base(args.name);
         }
     }
 });
+
+m.airtable.base = {};
