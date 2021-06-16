@@ -46,6 +46,28 @@ m.airtable.act({
         });
     },
 
+    /* Expects
+    {
+        table: "table name",
+        record_ids: [],
+        done: (record) => {},                 // Done with each handle_records call
+        handle_error: (error) => {}           // Error handler
+    } */
+    find_all(_$, args) {
+        let _records = [];
+        const filterFormula = "OR(" + args.record_ids.map(id => { return `RECORD_ID()='${id}'` }).join(",") + ")";
+
+        _$.act.table({ name: args.table }).select({
+            filterByFormula: filterFormula
+        }).eachPage(function page(records, fetchNextPage) {
+            _records = _records.concat(records);
+            fetchNextPage();
+        }, function done(error) {
+            if (error) { args.handle_error(error); return; }
+            args.done(_records);
+        });
+    },
+
     priv: {
         table(_$, args) {
             if (m.airtable.base[args.name]) return m.airtable.base[args.name];

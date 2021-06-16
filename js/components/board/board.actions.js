@@ -15,6 +15,7 @@ m.board.acts({
     },
 
     get_categories(_$, args) {
+        console.log("Requesting categories...");
         let records = [];
 
         return new Promise((resolve, reject) => {
@@ -27,10 +28,11 @@ m.board.acts({
                     return reject(error);
                 },
                 done: () => { 
+                    console.log(`Found categories: ${records.map(r => r.get("Name"))}`)
                     resolve(records.map(record => {
                         return {
                             name: record.get("Name"),
-                            answers: record.get("Questions")
+                            answers: record.get("Answers")
                         }
                     }));
                 }
@@ -39,20 +41,29 @@ m.board.acts({
     },
 
 
-    get_answers(_$, args) {
-        let records = [];
+    get_answers(_$, categories) {
+        console.log("Requesting Category-Answers...");
+        let promise_array = [];
 
-        return new Promise((resolve, reject) => {
-            m.airtable.act.list({
-                table: "Game-Categories",
-                params: { filterByFormula: `Game=${args.game_id}` },
-                handle_records: (record_page) => { records = records.concat(record_page) },
-                handle_error: (error) => { console.error(error) },
-                done: () => { 
-                    m.board.categories = records.map(record => record.get("Name"));
-                    return resolve(records); 
-                }
-            })
+        categories.forEach((category, index) => {
+            console.log(`Requesting Answers for Category ${category.name}...`);
+            let records = [];
+            promise_array.push(new Promise((resolve, reject) => {
+                m.airtable.act.find_all({
+                    table: "Category-Answers",
+                    record_ids: category.answers,
+                    handle_records: (record_page) => { records = records.concat(record_page) },
+                    handle_error: (error) => { console.error(error) },
+                    done: (records) => { 
+                        console.log(`Found answers for Category ${category.name}: ${records.map(r => r.get("Answer"))}`)
+                        categories[index].answers = records.map(r => r.get("Answer"));
+                    }
+                })
+            }));
+
+            Promise.allSettled(promise_array).then(data => {
+
+            });
         });
     }
 });
