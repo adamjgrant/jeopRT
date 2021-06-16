@@ -25,7 +25,6 @@
         // Use this area for high-level configuration;
         const components = [
 			"answer",
-			"test",
             "airtable"
         ],
         airtable_base_id = "app2fblS4RQ9YX80u",
@@ -35,7 +34,11 @@
 </head>
 
 <body>
-    <div id="viewport"></div>
+    <div id="viewport">
+        <div id="board" class="board">
+            
+        </div>
+    </div>
     <script src="js/vendor/airtable.js"></script>
     <script src="js/vendor/mozart.js"></script>
     <script id="main_script" src="js/main.js"></script>
