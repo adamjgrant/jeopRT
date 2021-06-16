@@ -11,4 +11,6 @@ echo "m.${component_name}.routes({\n\n});" > js/components/$component_name/$comp
 echo "[data-component~='${component_name}'] {\n\n}" > css/components/$component_name.css
 
 # Add component to array.
-sed "s/const components = \[/const components = \[\n\t\t\t\"${component_name}\",/" index.html | tee index.html
+sed "s/const components = \[/const components = \[\n\t\t\t\"${component_name}\",/" index.html | tee index.html > /dev/null
+
+echo "${component_name} created."
