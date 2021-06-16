@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Airtable Frontend</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="https://adamjgrant.github.io/airtable-frontend/">
+    <meta property="og:image" content="">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <meta name="theme-color" content="#fafafa">
+    <script>
+        // Use this area for high-level configuration;
+        const components = [
+			"test",
+            "airtable"
+        ],
+        airtable_base_id = "app2fblS4RQ9YX80u",
+        airtable_api_key = "keyE4p9WdiJ6xAkNx"; // Careful.
+    </script>
+    <script src="js/components.js"></script>
+</head>
+
+<body>
+    <div id="viewport"></div>
+    <script src="js/vendor/airtable.js"></script>
+    <script src="js/vendor/mozart.js"></script>
+    <script id="main_script" src="js/main.js"></script>
+
+    <script src="js/vendor/viewport-fix.js"></script>
+    <script>new VVP()</script>
+    <link rel="stylesheet" href="css/icofont.min.css">
+</body>
+
+</html>
