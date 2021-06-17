@@ -20,7 +20,6 @@ m.column.acts({
             .map(answer => m.answer.act.generate_markup(answer))
             .join("\n");
         const this_column = _$.act.get_column_by_name(args)
-        console.log(this_column);
         _$.act.remove_answers(args);
         this_column.innerHTML += markup;
     },
