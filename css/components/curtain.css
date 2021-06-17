@@ -1,3 +1,16 @@
 [data-component~='curtain'] {
-
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--jeopardy-blue);
+    z-index: 1;
+    text-align: center;
+    font-size: 10vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'korinna'
 }

@@ -20,8 +20,12 @@ m.column.acts({
             .map(answer => m.answer.act.generate_markup(answer))
             .join("\n");
         const this_column = _$.act.get_column_by_name(args)
-        m.answer.act.remove_answers();
+        _$.act.remove_answers(args);
         this_column.innerHTML += markup;
+    },
+
+    remove_answers(_$, args) {
+        document.querySelectorAll(`[data-column='${args.name}'] [data-component~='answer']`).forEach(answer => answer.remove());
     },
 
     priv: {

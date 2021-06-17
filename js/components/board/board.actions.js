@@ -15,7 +15,7 @@ m.board.acts({
 
     set_board_visibility(_$, args) {
         return new Promise((resolve, reject) => {
-            if (args.started) _$.act.hide_curtain();
+            if (args.started) m.curtain.act.hide();
             return resolve(args);
         });
     },
