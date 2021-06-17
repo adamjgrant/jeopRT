@@ -20,6 +20,7 @@ m.column.acts({
             .map(answer => m.answer.act.generate_markup(answer))
             .join("\n");
         const this_column = _$.act.get_column_by_name(args)
+        console.log(this_column);
         _$.act.remove_answers(args);
         this_column.innerHTML += markup;
     },
@@ -34,7 +35,13 @@ m.column.acts({
         },
 
         get_column_by_name(_$, args) {
-            return (Array.from(_$.me()).filter(column => column.dataset.column === args.name) || [])[0];
+            // const me = Array.from(_$.me());
+            // Don't know why I can't do this some of the time.
+            const me = Array.from(document.querySelectorAll("[data-component='column']"));
+            if (!me.length) {
+                return false;
+            }
+            return (me.filter(column => column.dataset.column === args.name) || [])[0];
         },
 
         sort_answers(_$, args) {
