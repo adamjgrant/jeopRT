@@ -1,4 +1,4 @@
-const REFRESH_RATE_IN_SECONDS = 5;
+const REFRESH_RATE_IN_SECONDS = 2;
 
 m.board.events(_$ => {
     _$.act.load_board_data()

@@ -74,6 +74,7 @@ m.board.acts({
                                 return {
                                     name: record.get("Answer"),
                                     price: record.get("Price"),
+                                    selected: record.get("Selected"),
                                     answered: !!record.get("Won by")
                                 }
                             });
