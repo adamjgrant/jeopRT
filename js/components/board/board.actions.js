@@ -1,6 +1,7 @@
 m.board.acts({
     load_board_data(_$, args) {
         _$.act.get_game_record_id()
+            .then(record => _$.act.set_board_visibility(record))
             .then(record => _$.act.get_categories(record))
             .then(categories => _$.act.get_answers(categories))
             .then(categories_with_answers => {
@@ -10,6 +11,13 @@ m.board.acts({
                 });
             })
             .catch(error => console.error(error));
+    },
+
+    set_board_visibility(_$, args) {
+        return new Promise((resolve, reject) => {
+            if (args.started) _$.act.hide_curtain();
+            return resolve(args);
+        });
     },
 
     get_game_record_id(_$, args) {
@@ -22,7 +30,7 @@ m.board.acts({
                 column_name: "Game ID",
                 value: game_id,
                 handle_error: (error) => reject(error),
-                done: (record) => resolve({ game_record_id: record.id, game_id: game_id })
+                done: (record) => resolve({ game_record_id: record.id, game_id: game_id, started: record.get("Started") })
             });
         });
     },
@@ -105,6 +113,12 @@ m.board.acts({
 
     remove_column(_$, args) {
         return // TODO;
+    },
+
+    priv: {
+        sort_columns(args) {
+            // Maybe TODO?
+        }
     }
 });
 

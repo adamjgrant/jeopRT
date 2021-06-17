@@ -25,6 +25,7 @@
     <script>
         // Use this area for high-level configuration;
         const components = [
+                "curtain",
                 "column",
                 "board",
                 "answer",
@@ -42,6 +43,9 @@
 </head>
 
 <body>
+    <div data-component="curtain">
+        <h1>JeopRT</h1>
+    </div>
     <div id="board" data-component="board" class="board"></div>
     <script src="js/vendor/airtable.js"></script>
     <script src="js/vendor/mozart.js"></script>

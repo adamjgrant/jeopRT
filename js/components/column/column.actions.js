@@ -35,8 +35,7 @@ m.column.acts({
 
         sort_answers(_$, args) {
             return args.answers.sort((p, n) => {
-                if (parseInt(p.price) > parseInt(n.price)) return 1;
-                return -1;
+                return (parseInt(p.price) > parseInt(n.price)) ? 1 : -1;
             });
         }
     }
