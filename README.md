@@ -16,3 +16,6 @@ Per Airtable's recommendations, you should create a new Airtable user that has a
 4. Wait for a player to select an answer, then click the "selected" checkbox to have it show full screen.
 5. Move to the "Won by" cell for that answer and get ready to enter the winning player. Fastest way is just to start typing a few letters of their first name and hit enter when airtable finds it.
 6. No need to uncheck "selected." This is by design to keep the game play zippy.
+
+## Viewing the game
+Visit the root of the site with `?game=` and the ID of the game you want to play.
