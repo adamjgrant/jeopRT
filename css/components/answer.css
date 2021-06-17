@@ -24,11 +24,11 @@
     text-shadow: 1vh 1vh 1vh black;
 }
 
-[data-component~='answer']:not(.selected).answered {
+[data-component~='answer'].answered {
     opacity: 0.5;
 }
 
-[data-component~='answer'].selected {
+[data-component~='answer']:not(.answered).selected {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -39,12 +39,13 @@
     padding-left: 10vw;
     padding-right: 10vw;
     justify-content: center;
+    z-index: 1;
 }
 
-[data-component~='answer'].selected .price {
+[data-component~='answer']:not(.answered).selected .price {
     display: none;
 }
 
-[data-component~='answer'].selected .full-text {
+[data-component~='answer']:not(.answered).selected .full-text {
     display: block;
 }

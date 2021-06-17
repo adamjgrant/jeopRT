@@ -15,7 +15,8 @@ m.board.acts({
 
     set_board_visibility(_$, args) {
         return new Promise((resolve, reject) => {
-            if (args.started) m.curtain.act.hide();
+            if (args.started) m.curtain.act.set_game_started();
+            else m.curtain.act.unset_game_started();
             return resolve(args);
         });
     },
@@ -96,6 +97,7 @@ m.board.acts({
             Promise.allSettled(promises_array).then(data => {
                 // Now we have all the data, need to turn it into markup now.
                 m.board.data = categories;
+                m.curtain.act.hide();
                 const js_styles = document.getElementById("js-styles");
                 js_styles.innerHTML = `html { --number-of-categories: ${categories.length} }`;
                 console.log(categories);
