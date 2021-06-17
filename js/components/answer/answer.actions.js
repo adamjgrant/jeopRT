@@ -5,6 +5,10 @@ m.answer.acts({
                 <div class="price">${args.price}</div>
                 <div class="full-text">${args.name}</div>
             </div>
-        ` 
+        `
+    },
+
+    remove_answers(_$, args) {
+        Array.from(_$.me()).forEach(el => el.remove());
     }
 });

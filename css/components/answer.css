@@ -1,3 +1,14 @@
 [data-component~='answer'] {
+    padding: var(--answer-padding);
+    color: var(--price-color);
+}
 
+[data-component~='answer'] .price {
+    color: var(--price-color);
+    text-align: center;
+    font-size: calc(11vh / var(--number-of-categories));
+}
+
+[data-component~='answer'] .full-text {
+    display: none;
 }

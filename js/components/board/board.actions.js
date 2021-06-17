@@ -36,11 +36,11 @@ m.board.acts({
                 table: "Game-Categories",
                 params: { filterByFormula: `Game=${args.game_id}` },
                 handle_records: (record_page) => { records = records.concat(record_page) },
-                handle_error: (error) => { 
-                    console.error(error) 
+                handle_error: (error) => {
+                    console.error(error)
                     return reject(error);
                 },
-                done: () => { 
+                done: () => {
                     console.log(`Found categories: ${records.map(r => r.get("Name"))}`)
                     resolve(records.map(record => {
                         return {
@@ -67,7 +67,7 @@ m.board.acts({
                         record_ids: category.answers,
                         handle_records: (record_page) => { records = records.concat(record_page) },
                         handle_error: (error) => { console.error(error) },
-                        done: (records) => { 
+                        done: (records) => {
                             console.log(`Found answers for Category ${category.name}: ${records.map(r => r.get("Answer"))}`);
                             categories[index].answers = categories[index].answers.map((answer, i) => {
                                 const record = records[i];
@@ -87,6 +87,8 @@ m.board.acts({
             Promise.allSettled(promises_array).then(data => {
                 // Now we have all the data, need to turn it into markup now.
                 m.board.data = categories;
+                const js_styles = document.getElementById("js-styles");
+                js_styles.innerHTML = `html { --number-of-categories: ${categories.length} }`;
                 console.log(categories);
                 return resolve(categories)
             });
@@ -94,10 +96,10 @@ m.board.acts({
     },
 
     append_column(_$, args) {
-        if (!m.column.act.exists(args)) {
+        if (!m.column.act.exists(args.category)) {
             _$.me().innerHTML += args.markup;
-            m.column.act.add_answers(args.category);
         }
+        m.column.act.add_answers(args.category);
     },
 
     remove_column(_$, args) {
