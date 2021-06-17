@@ -5,7 +5,8 @@ m.board.acts({
             .then(categories => _$.act.get_answers(categories))
             .then(categories_with_answers => {
                 categories_with_answers.forEach(category => {
-                    m.column.act.add_to_board(category);
+                    const markup = m.column.act.generate_markup(category);
+                    _$.act.append_column({ markup: markup, category: category });
                 });
             })
             .catch(error => console.error(error));
@@ -93,7 +94,10 @@ m.board.acts({
     },
 
     append_column(_$, args) {
-        _$.me().innerHTML += args.markup;
+        if (!m.column.act.exists(args)) {
+            _$.me().innerHTML += args.markup;
+            m.column.act.add_answers(args.category);
+        }
     },
 
     remove_column(_$, args) {
