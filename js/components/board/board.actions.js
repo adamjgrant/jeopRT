@@ -3,6 +3,7 @@ m.board.acts({
         _$.act.get_game_record_id()
             .then(record => _$.act.get_categories(record))
             .then(categories => _$.act.get_answers(categories))
+            .then(categories_with_answers => console.log())
             .catch(error => console.error(error));
     },
 
@@ -49,39 +50,42 @@ m.board.acts({
 
 
     get_answers(_$, categories) {
-        console.log("Requesting Category-Answers...");
-        let promises_array = [];
+        return new Promise((resolve, reject) => {
+            console.log("Requesting Category-Answers...");
+            let promises_array = [];
 
-        categories.forEach((category, index) => {
-            promises_array.push(new Promise((resolve, reject) => {
-                console.log(`Requesting Answers for Category ${category.name}...`);
-                let records = [];
-                m.airtable.act.find_all({
-                    table: "Category-Answers",
-                    record_ids: category.answers,
-                    handle_records: (record_page) => { records = records.concat(record_page) },
-                    handle_error: (error) => { console.error(error) },
-                    done: (records) => { 
-                        console.log(`Found answers for Category ${category.name}: ${records.map(r => r.get("Answer"))}`);
-                        categories[index].answers = categories[index].answers.map((answer, i) => {
-                            const record = records[i];
-                            return {
-                                name: record.get("Answer"),
-                                price: record.get("Price"),
-                                answered: !!record.get("Won by")
-                            }
-                        });
+            categories.forEach((category, index) => {
+                promises_array.push(new Promise((resolve, reject) => {
+                    console.log(`Requesting Answers for Category ${category.name}...`);
+                    let records = [];
+                    m.airtable.act.find_all({
+                        table: "Category-Answers",
+                        record_ids: category.answers,
+                        handle_records: (record_page) => { records = records.concat(record_page) },
+                        handle_error: (error) => { console.error(error) },
+                        done: (records) => { 
+                            console.log(`Found answers for Category ${category.name}: ${records.map(r => r.get("Answer"))}`);
+                            categories[index].answers = categories[index].answers.map((answer, i) => {
+                                const record = records[i];
+                                return {
+                                    name: record.get("Answer"),
+                                    price: record.get("Price"),
+                                    answered: !!record.get("Won by")
+                                }
+                            });
 
-                        resolve(categories);
-                    }
-                });
-            }))
-        });
+                            resolve(categories);
+                        }
+                    });
+                }))
+            });
 
-        Promise.allSettled().then(data => {
-            // Now we have all the data, need to turn it into markup now.
-            m.board.data = categories;
-        });
+            Promise.allSettled(promises_array).then(data => {
+                // Now we have all the data, need to turn it into markup now.
+                m.board.data = categories;
+                return resolve(categories)
+            });
+        })
     }
 });
 
