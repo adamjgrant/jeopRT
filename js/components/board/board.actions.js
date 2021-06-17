@@ -3,7 +3,11 @@ m.board.acts({
         _$.act.get_game_record_id()
             .then(record => _$.act.get_categories(record))
             .then(categories => _$.act.get_answers(categories))
-            .then(categories_with_answers => console.log())
+            .then(categories_with_answers => {
+                categories_with_answers.forEach(category => {
+                    m.column.act.add_to_board(category);
+                });
+            })
             .catch(error => console.error(error));
     },
 
@@ -48,7 +52,6 @@ m.board.acts({
         });
     },
 
-
     get_answers(_$, categories) {
         return new Promise((resolve, reject) => {
             console.log("Requesting Category-Answers...");
@@ -83,9 +86,18 @@ m.board.acts({
             Promise.allSettled(promises_array).then(data => {
                 // Now we have all the data, need to turn it into markup now.
                 m.board.data = categories;
+                console.log(categories);
                 return resolve(categories)
             });
         })
+    },
+
+    append_column(_$, args) {
+        _$.me().innerHTML += args.markup;
+    },
+
+    remove_column(_$, args) {
+        return // TODO;
     }
 });
 

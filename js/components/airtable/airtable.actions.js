@@ -15,7 +15,10 @@ m.airtable.act({
             args.handle_records(records);
             fetchNextPage();
         }, function done(err) { 
-            if (err) { args.handle_errors(err); return; } 
+            if (err) { 
+                console.error("Error for table query: " + args.table);
+                args.handle_errors(err); return; 
+            } 
             args.done()
         });
     },
@@ -70,7 +73,7 @@ m.airtable.act({
 
     priv: {
         table(_$, args) {
-            if (m.airtable.base[args.name]) return m.airtable.base[args.name];
+            if (m.airtable.base[args.name]) return m.airtable.base[args.name](args.name);
             const Airtable = require('airtable');
             const base = new Airtable({ apiKey: airtable_api_key }).base(airtable_base_id);
             m.airtable.base[args.name] = base;
