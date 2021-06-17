@@ -1,6 +1,20 @@
 /* FOUNDATIONAL STYLES */
+
 @import url('normalize.css');
 @import url('reset.css');
 @import url('viewport-fix.css');
+
+/* FONTS */
+
+@font-face {
+    font-family: "swiss911";
+    src: url("../fonts/swiss-911-extra-compr9c22f.ttf");
+}
+
+@font-face {
+    font-family: "korinna";
+    src: url("../fonts/Korinna-Regular.otf");
+}
+
 
 /* COMPONENTS ARE LOADED VIA MAIN.JS */

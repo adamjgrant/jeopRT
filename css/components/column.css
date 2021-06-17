@@ -3,8 +3,26 @@
     width: 100%;
     flex-direction: column;
     height: 100vh;
+    border-left: 0.2vw solid black;
+    border-right: 0.2vw solid black;
+    justify-content: space-between;
 }
 
 [data-component~='column'] .header {
-    padding: var(--answer-padding);
+    padding: var(--header-padding);
+    text-align: center;
+    background: var(--jeopardy-blue);
+    margin-top: 9px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+[data-component~='column'] .header h1 {
+    transform: scaleX(1.33);
+    margin: 0;
+    font-weight: normal;
+    font-size: 2.3vh;
+    letter-spacing: 1px;
+    font-family: 'swiss911';
+    text-transform: uppercase;
 }

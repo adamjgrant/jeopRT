@@ -1,6 +1,7 @@
 [data-component~='board'] {
     display: flex;
-    background: var(--jeopardy-blue);
+    background: black;
     color: white;
     height: 100vh;
+    align-items: stretch;
 }

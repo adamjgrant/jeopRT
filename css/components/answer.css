@@ -1,12 +1,17 @@
 [data-component~='answer'] {
     padding: var(--answer-padding);
     color: var(--price-color);
+    background-color: var(--jeopardy-blue);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    width: 100%;
 }
 
 [data-component~='answer'] .price {
     color: var(--price-color);
     text-align: center;
-    font-size: calc(11vh / var(--number-of-categories));
+    font-size: calc(100vh/12 - 4vh);
+    font-family: 'swiss911';
 }
 
 [data-component~='answer'] .full-text {

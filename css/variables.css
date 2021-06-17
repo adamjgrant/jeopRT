@@ -1,5 +1,6 @@
 :root {
-    --answer-padding: 2vh;
+    --answer-padding: 1vh;
+    --header-padding: 2.1vh;
     --jeopardy-blue: #060CE9;
     --price-color: #F7D95B;
 }
