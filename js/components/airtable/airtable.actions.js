@@ -14,11 +14,12 @@ m.airtable.act({
         _$.act.table({ name: args.table }).select(args.params).eachPage(function page(records, fetchNextPage) {
             args.handle_records(records);
             fetchNextPage();
-        }, function done(err) { 
-            if (err) { 
+        }, function done(err) {
+            if (err) {
                 console.error("Error for table query: " + args.table);
-                args.handle_errors(err); return; 
-            } 
+                args.handle_errors(err);
+                return;
+            }
             args.done()
         });
     },
@@ -39,7 +40,7 @@ m.airtable.act({
         if (!args.value) return console.error("No game ID found");
 
         _$.act.table({ name: args.table }).select({
-            filterByFormula: filterFormula 
+            filterByFormula: filterFormula
         }).eachPage(function page(records, fetchNextPage) {
             record = records[0];
             fetchNextPage();
@@ -75,7 +76,7 @@ m.airtable.act({
         table(_$, args) {
             if (m.airtable.base[args.name]) return m.airtable.base[args.name](args.name);
             const Airtable = require('airtable');
-            const base = new Airtable({ apiKey: airtable_api_key }).base(airtable_base_id);
+            const base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(AIRTABLE_BASE_ID);
             m.airtable.base[args.name] = base;
             return base(args.name);
         }
