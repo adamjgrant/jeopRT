@@ -13,17 +13,18 @@
     text-align: center;
     background: var(--jeopardy-blue);
     width: 100%;
-    height: 13vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 0.25vh;
 }
 
 [data-component~='column'] .header h1 {
     margin: 0;
     font-weight: normal;
-    font-size: 2.4vh;
+    font-size: 3.4vh;
     font-family: 'helvetica-inserat-lt';
     text-transform: uppercase;
-    line-height: 2.8vh;
+    line-height: 3.8vh;
 }

@@ -3,12 +3,17 @@
     background-color: var(--jeopardy-blue);
     margin-top: 4px;
     width: 100%;
+    border-radius: 0.25vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 [data-component~='answer'] .price {
     color: var(--price-color);
     text-align: center;
-    font-size: calc(100vh/12 - 4vh);
+    font-size: calc(100vh/6 - 8vh);
     font-family: 'swiss911';
     text-shadow: 0.3vh 0.3vh 0 black;
 }
@@ -29,8 +34,8 @@
     text-shadow: 1vh 1vh 1vh black;
 }
 
-[data-component~='answer'].answered {
-    opacity: 0.5;
+[data-component~='answer'].answered .price {
+    display: none;
 }
 
 [data-component~='answer']:not(.answered).selected {
