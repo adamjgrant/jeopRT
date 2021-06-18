@@ -60,6 +60,7 @@ m.board.acts({
                     console.log(`Found categories: ${records.map(r => r.get("Name"))}`)
                     resolve(records.map(record => {
                         return {
+                            id: record.id,
                             name: record.get("Name"),
                             answers: record.get("Answers")
                         }
