@@ -2,7 +2,6 @@
     padding: var(--answer-padding);
     background-color: var(--jeopardy-blue);
     margin-top: 4px;
-    margin-bottom: 4px;
     width: 100%;
 }
 
@@ -11,6 +10,12 @@
     text-align: center;
     font-size: calc(100vh/12 - 4vh);
     font-family: 'swiss911';
+    text-shadow: 0.3vh 0.3vh 0 black;
+}
+
+[data-component~='answer'] .price:before {
+    content: "$";
+    display: inline-block;
 }
 
 [data-component~='answer'] .full-text {

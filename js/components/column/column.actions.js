@@ -6,7 +6,7 @@ m.column.acts({
     generate_markup(_$, args) {
         return `
             <div data-component="column" data-column="${args.name}">
-                <div class="header"><h1>${args.name}<span></div>
+                <div class="header"><h1>${args.name}<h1></div>
             </div>
         `
     },

@@ -9,20 +9,21 @@
 }
 
 [data-component~='column'] .header {
-    padding: var(--header-padding);
+    padding: 0 var(--header-padding);
     text-align: center;
     background: var(--jeopardy-blue);
-    margin-top: 9px;
-    margin-bottom: 4px;
     width: 100%;
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 [data-component~='column'] .header h1 {
-    transform: scaleX(1.33);
     margin: 0;
     font-weight: normal;
-    font-size: 2.3vh;
-    letter-spacing: 1px;
-    font-family: 'swiss911';
+    font-size: 2.4vh;
+    font-family: 'helvetica-inserat-lt';
     text-transform: uppercase;
+    line-height: 2.8vh;
 }

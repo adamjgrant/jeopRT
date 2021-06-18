@@ -12,6 +12,11 @@
 }
 
 @font-face {
+    font-family: "helvetica-inserat-lt";
+    src: url("../fonts/Helvetica\ Inserat\ LT.ttf");
+}
+
+@font-face {
     font-family: "korinna";
     src: url("../fonts/Korinna-Regular.otf");
 }
