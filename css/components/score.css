@@ -1,3 +1,36 @@
-[data-component~='score'] {
+#scorebox {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 2vw;
+}
 
+[data-component~='score'] {
+    background-color: var(--jeopardy-blue);
+    margin-bottom: 4px;
+}
+
+[data-component~='score'] .amount {
+    height: 5vh;
+    font-size: 4vh;
+    font-family: 'helvetica-inserat-lt';
+}
+
+[data-component~='score'] .amount:before {
+    content: "$";
+    display: inline-block;
+}
+
+[data-component~='score'] .name,
+[data-component~='score'] .amount {
+    color: white;
+    text-align: center;
+}
+
+[data-component~='score'] .name {
+    font-family: 'Reenie Beanie', cursive;
+    padding: 3vh 5vh;
+    font-size: 12vh;
 }

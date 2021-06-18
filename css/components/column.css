@@ -13,7 +13,7 @@
     text-align: center;
     background: var(--jeopardy-blue);
     width: 100%;
-    flex-grow: 3;
+    height: 13vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
