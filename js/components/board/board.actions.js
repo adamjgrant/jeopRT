@@ -58,13 +58,15 @@ m.board.acts({
                 },
                 done: () => {
                     console.log(`Found categories: ${records.map(r => r.get("Name"))}`)
-                    resolve(records.map(record => {
+                    const _categories = records.map(record => {
                         return {
                             id: record.id,
                             name: record.get("Name"),
                             answers: record.get("Answers")
                         }
-                    }));
+                    });
+                    const categories_sorted = _$.act.sort_columns({ columns: _categories });
+                    resolve(_categories);
                 }
             })
         });
@@ -144,8 +146,10 @@ m.board.acts({
     },
 
     priv: {
-        sort_columns(args) {
-            // Maybe TODO?
+        sort_columns(_$, args) {
+            return args.columns.sort((p, n) => {
+                return p.name > n.name ? 1 : -1;
+            });
         }
     }
 });
