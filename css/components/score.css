@@ -18,6 +18,8 @@
     height: 5vh;
     font-size: 4vh;
     font-family: 'helvetica-inserat-lt';
+    text-shadow: 0.5vh 0.5vh 0 black;
+    margin: 1vh 0;
 }
 
 [data-component~='score'] .amount:before {

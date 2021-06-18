@@ -20,6 +20,10 @@
     border-radius: 0.25vh;
 }
 
+[data-component~='column'] .header.hide h1 {
+    visibility: hidden;
+}
+
 [data-component~='column'] .header h1 {
     margin: 0;
     font-weight: normal;

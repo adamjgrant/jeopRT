@@ -1,7 +1,10 @@
 m.board.events(_$ => {
-    _$.act.load_board_data()
+    _$.act.load_board_data();
 
-    if (REFRESH_RATE_IN_SECONDS > 0) {
-        setInterval(_$.act.load_board_data, REFRESH_RATE_IN_SECONDS * 1000);
-    }
+    _$.act.get_settings_value({ setting: "Refresh rate in seconds" })
+        .then(rate_in_seconds => {
+            if (rate_in_seconds > 0) {
+                setInterval(_$.act.load_board_data, rate_in_seconds * 1000);
+            }
+        });
 });

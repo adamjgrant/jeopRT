@@ -117,11 +117,29 @@ m.board.acts({
         if (!m.column.act.exists(args.category)) {
             _$.me().innerHTML += args.markup;
         }
+        m.column.act.set_header_visibility(args.category);
         m.column.act.add_answers(args.category);
     },
 
     remove_column(_$, args) {
         return // TODO;
+    },
+
+    get_settings_value(_$, args) {
+        return new Promise((resolve, reject) => {
+            m.airtable.act.get_by_value({
+                table: "Settings",
+                column_name: "Key",
+                value: args.setting,
+                done: (record) => {
+                    resolve(record.get("Value"));
+                },
+                handle_error: (error) => {
+                    console.log(error);
+                    reject(error);
+                }
+            })
+        })
     },
 
     priv: {

@@ -24,6 +24,12 @@ m.column.acts({
         this_column.innerHTML += markup;
     },
 
+    set_header_visibility(_$, args) {
+        const disabled = _$.act.all_questions_answered_for_column(args);
+        const this_column = _$.act.get_column_by_name(args).querySelector(".header");
+        if (disabled) this_column.classList.add("hide");
+    },
+
     remove_answers(_$, args) {
         document.querySelectorAll(`[data-column='${args.name}'] [data-component~='answer']`).forEach(answer => answer.remove());
     },
@@ -47,8 +53,13 @@ m.column.acts({
             return args.answers.sort((p, n) => {
                 return (parseInt(p.price) > parseInt(n.price)) ? 1 : -1;
             });
+        },
+
+        all_questions_answered_for_column(_$, args) {
+            if (!m.column.cache[args.name]) return false;
+            return m.column.cache[args.name].answers.every(answer => answer.answered);
         }
     }
 });
 
-m.column.cache = [];
+m.column.cache = {};
