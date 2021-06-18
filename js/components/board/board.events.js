@@ -3,8 +3,13 @@ m.board.events(_$ => {
 
     _$.act.get_settings_value({ setting: "Refresh rate in seconds" })
         .then(rate_in_seconds => {
-            if (rate_in_seconds > 0) {
-                setInterval(_$.act.load_board_data, rate_in_seconds * 1000);
-            }
+            const repeat = () => {
+                _$.act.load_board_data().then(x => {
+                    if (rate_in_seconds > 0) {
+                        setTimeout(repeat, rate_in_seconds * 1000);
+                    }
+                })
+            };
+            repeat();
         });
 });

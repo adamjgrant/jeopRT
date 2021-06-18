@@ -1,17 +1,20 @@
 m.board.acts({
     load_board_data(_$, args) {
-        _$.act.get_game_record_id()
-            .then(record => _$.act.set_board_visibility(record))
-            .then(record => m.score.act.setup(record))
-            .then(record => _$.act.get_categories(record))
-            .then(categories => _$.act.get_answers(categories))
-            .then(categories_with_answers => {
-                categories_with_answers.forEach(category => {
-                    const markup = m.column.act.generate_markup(category);
-                    _$.act.append_column({ markup: markup, category: category });
-                });
-            })
-            .catch(error => console.error(error));
+        return new Promise((resolve, reject) => {
+            _$.act.get_game_record_id()
+                .then(record => _$.act.set_board_visibility(record))
+                .then(record => m.score.act.setup(record))
+                .then(record => _$.act.get_categories(record))
+                .then(categories => _$.act.get_answers(categories))
+                .then(categories_with_answers => {
+                    categories_with_answers.forEach(category => {
+                        const markup = m.column.act.generate_markup(category);
+                        _$.act.append_column({ markup: markup, category: category });
+                    });
+                    resolve();
+                })
+                .catch(error => console.error(error));
+        });
     },
 
     set_board_visibility(_$, args) {
