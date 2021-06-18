@@ -57,7 +57,6 @@ m.board.acts({
                     return reject(error);
                 },
                 done: () => {
-                    console.log(`Found categories: ${records.map(r => r.get("Name"))}`)
                     const _categories = records.map(record => {
                         return {
                             id: record.id,
@@ -87,7 +86,6 @@ m.board.acts({
                         handle_records: (record_page) => { records = records.concat(record_page) },
                         handle_error: (error) => { console.error(error) },
                         done: (records) => {
-                            console.log(`Found answers for Category ${category.name}: ${records.map(r => r.get("Answer"))}`);
                             categories[index].answers = categories[index].answers.map((answer, i) => {
                                 const record = records[i];
                                 return {
