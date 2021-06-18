@@ -50,6 +50,7 @@
     padding-right: 10vw;
     justify-content: center;
     z-index: 1;
+    margin: 0;
 }
 
 [data-component~='answer']:not(.answered).selected .price {
