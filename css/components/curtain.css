@@ -6,7 +6,7 @@
     right: 0;
     background: var(--jeopardy-blue);
     background: url('https://cdn.everything.io/manual_uploads/jeoprt.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background-size: 100% 100%;
     z-index: 1;
     text-align: center;
     font-size: 10vh;
