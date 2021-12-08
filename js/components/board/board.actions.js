@@ -35,9 +35,9 @@ m.board.acts({
                 column_name: "Game ID",
                 value: game_id,
                 handle_error: (error) => reject(error),
-                done: (record) => resolve({ 
-                    game_record_id: record.id, 
-                    game_id: game_id, 
+                done: (record) => resolve({
+                    game_record_id: record.id,
+                    game_id: game_id,
                     started: record.get("Started"),
                     players: record.get("Player Names"),
                     scores: record.get("Player Scores")
@@ -105,7 +105,7 @@ m.board.acts({
                 }))
             });
 
-            Promise.allSettled(promises_array).then(data => {
+            Promise.all(promises_array).then(data => {
                 // Now we have all the data, need to turn it into markup now.
                 m.board.data = categories;
                 m.curtain.act.hide();

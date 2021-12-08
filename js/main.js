@@ -27,7 +27,7 @@ components.forEach(component => {
 });
 
 Promise
-    .allSettled(promises)
+    .all(promises)
     .then(() => {
         Mozart.init();
     });
