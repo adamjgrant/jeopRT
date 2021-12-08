@@ -95,7 +95,7 @@ m.board.acts({
                                     name: record.get("Answer"),
                                     price: record.get("Price"),
                                     selected: record.get("Selected"),
-                                    answered: !!record.get("Won by")
+                                    answered: (!!record.get("Won by")) || (record.get("Wager") && !!record.get("Lost by"))
                                 }
                             });
 
